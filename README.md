@@ -225,6 +225,42 @@ Edit `src/data/transactions.json` and add new transaction objects following the 
 - Transaction Detail styles: `src/components/TransactionDetail.css`
 - Global styles: `src/index.css`
 
+## 🚀 Deployment to GitHub Pages
+
+The project includes GitHub Actions workflow for automatic deployment to GitHub Pages.
+
+### Quick Setup
+
+1. **Enable GitHub Pages**:
+   - Go to your repository settings on GitHub
+   - Navigate to "Pages" in the sidebar
+   - Under "Source", select **"GitHub Actions"**
+
+2. **Configure Base Path** (if needed):
+   - **Root repository** (`username.github.io`): No changes needed (uses `/`)
+   - **Subdirectory** (`username.github.io/wallet-app`): 
+     - Edit `.github/workflows/deploy.yml`
+     - Change `VITE_BASE_PATH: /` to `VITE_BASE_PATH: /wallet-app/`
+
+3. **Deploy**:
+   - Push code to `main` or `master` branch
+   - GitHub Actions will automatically build and deploy
+   - Monitor progress in the **Actions** tab
+
+4. **Access Your App**:
+   - Root: `https://username.github.io/`
+   - Subdirectory: `https://username.github.io/wallet-app/`
+
+### Files Created for Deployment
+
+- `.github/workflows/deploy.yml` - GitHub Actions workflow
+- `.nojekyll` - Prevents Jekyll processing
+- `404.html` - Auto-created for React Router support
+
+### Detailed Instructions
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions, troubleshooting, and custom domain setup.
+
 ## 🐛 Troubleshooting
 
 ### Port Already in Use
@@ -238,6 +274,12 @@ npm install
 
 ### TypeScript Errors
 Check `tsconfig.json` configuration and ensure all types are properly defined.
+
+### GitHub Pages Deployment Issues
+- Ensure GitHub Actions is enabled in repository settings
+- Check that "Pages" source is set to "GitHub Actions"
+- Verify the base path matches your repository structure
+- Check GitHub Actions logs for build errors
 
 ## 📚 Resources
 
