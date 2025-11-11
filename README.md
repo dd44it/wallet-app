@@ -234,13 +234,14 @@ The project includes GitHub Actions workflow for automatic deployment to GitHub 
 1. **Enable GitHub Pages**:
    - Go to your repository settings on GitHub
    - Navigate to "Pages" in the sidebar
-   - Under "Source", select **"GitHub Actions"**
+   - Under "Source", select **"GitHub Actions"** (not "Branch")
+   - Save the settings
 
-2. **Configure Base Path** (if needed):
-   - **Root repository** (`username.github.io`): No changes needed (uses `/`)
-   - **Subdirectory** (`username.github.io/wallet-app`): 
-     - Edit `.github/workflows/deploy.yml`
-     - Change `VITE_BASE_PATH: /` to `VITE_BASE_PATH: /wallet-app/`
+2. **Base Path Configuration**:
+   - The workflow **automatically detects** the repository name and sets the base path
+   - **Root repository** (`username.github.io`): Automatically uses `/`
+   - **Subdirectory** (`username.github.io/wallet-app`): Automatically uses `/wallet-app/`
+   - No manual configuration needed!
 
 3. **Deploy**:
    - Push code to `main` or `master` branch
@@ -250,6 +251,10 @@ The project includes GitHub Actions workflow for automatic deployment to GitHub 
 4. **Access Your App**:
    - Root: `https://username.github.io/`
    - Subdirectory: `https://username.github.io/wallet-app/`
+
+### ⚠️ Important: Source Must Be "GitHub Actions"
+
+Make sure in your repository **Settings → Pages → Source**, you select **"GitHub Actions"**, not "Branch". This is required for the workflow to deploy correctly.
 
 ### Files Created for Deployment
 
@@ -276,10 +281,38 @@ npm install
 Check `tsconfig.json` configuration and ensure all types are properly defined.
 
 ### GitHub Pages Deployment Issues
+
+#### 404 Errors on Assets (CSS/JS files)
+If you see errors like `GET https://username.github.io/assets/... 404 (Not Found)`:
+
+1. **Check the Source Setting**:
+   - Go to repository Settings → Pages
+   - Ensure **"Source"** is set to **"GitHub Actions"** (not "Branch")
+   - This is the most common issue!
+
+2. **Verify Base Path**:
+   - The workflow automatically detects the repository name
+   - For subdirectory repos (`username.github.io/wallet-app`), base path should be `/wallet-app/`
+   - Check the GitHub Actions logs to see what base path was used
+
+3. **Manual Override** (if automatic detection fails):
+   - Edit `.github/workflows/deploy.yml`
+   - Find the `Get repository name` step
+   - Manually set `BASE_PATH` in the `Build` step:
+     ```yaml
+     env:
+       VITE_BASE_PATH: /wallet-app/  # Replace with your repo name
+     ```
+
+4. **Clear Browser Cache**:
+   - Hard refresh (Ctrl+Shift+R or Cmd+Shift+R)
+   - Or clear browser cache completely
+
+#### Other Issues
 - Ensure GitHub Actions is enabled in repository settings
-- Check that "Pages" source is set to "GitHub Actions"
-- Verify the base path matches your repository structure
 - Check GitHub Actions logs for build errors
+- Verify `.nojekyll` file exists in `public/` folder (it's automatically included)
+- Check that React Router basename is set correctly (handled automatically)
 
 ## 📚 Resources
 

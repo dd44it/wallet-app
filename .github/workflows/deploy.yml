@@ -29,16 +29,29 @@ jobs:
           node-version: '18'
           cache: 'npm'
 
+      - name: Get repository name
+        id: repo
+        run: |
+          REPO_NAME=$(echo "${{ github.repository }}" | cut -d'/' -f2)
+          # Check if repository name matches username.github.io pattern (root repo)
+          if [[ "$REPO_NAME" == *.github.io ]]; then
+            echo "BASE_PATH=/" >> $GITHUB_OUTPUT
+            echo "Repository is root repo, using base path: /"
+          else
+            echo "BASE_PATH=/$REPO_NAME/" >> $GITHUB_OUTPUT
+            echo "Repository is subdirectory, using base path: /$REPO_NAME/"
+          fi
+
       - name: Install dependencies
         run: npm ci
 
       - name: Build
         run: npm run build
         env:
-          # Set base path for GitHub Pages if repo is not at root
-          # Change this if your repo is at username.github.io/wallet-app
-          # For root repo (username.github.io), use: VITE_BASE_PATH=/
-          VITE_BASE_PATH: /
+          # Automatically set base path based on repository name
+          # Root repo (username.github.io): /
+          # Subdirectory (username.github.io/repo-name): /repo-name/
+          VITE_BASE_PATH: ${{ steps.repo.outputs.BASE_PATH }}
 
       - name: Fix 404 for client-side routing
         run: |
