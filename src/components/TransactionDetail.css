@@ -1,0 +1,183 @@
+.transaction-detail-container {
+  min-height: 100vh;
+  background: #f2f2f7;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.transaction-detail-header {
+  margin-bottom: 20px;
+}
+
+.back-button {
+  background: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  color: #007AFF;
+  font-size: 18px;
+  transition: transform 0.2s;
+}
+
+.back-button:hover {
+  transform: scale(1.1);
+}
+
+.back-button:active {
+  transform: scale(0.95);
+}
+
+.transaction-detail-content {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-number {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.transaction-detail-amount {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.transaction-detail-amount.payment {
+  color: #34c759;
+}
+
+.transaction-detail-amount.credit {
+  color: #ff3b30;
+}
+
+.transaction-detail-name {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.transaction-detail-date {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+/* Card Info Block */
+.card-info-block {
+  background: #f2f2f7;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.card-info-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.card-info-icon {
+  font-size: 24px;
+  color: #007AFF;
+  margin-right: 12px;
+}
+
+.card-info-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.card-info-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.card-info-row.total-row {
+  border-top: 2px solid #e5e7eb;
+  padding-top: 16px;
+  margin-top: 8px;
+}
+
+.card-info-label {
+  font-size: 14px;
+  color: #666;
+}
+
+.card-info-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.card-info-status {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 6px;
+}
+
+.card-info-status.approved {
+  background: #d1fae5;
+  color: #34c759;
+}
+
+.card-info-status.declined {
+  background: #ffebee;
+  color: #ff3b30;
+}
+
+.card-info-total {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Transaction Description */
+.transaction-detail-description {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.description-label {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.description-text {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.transaction-not-found {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+}
+
